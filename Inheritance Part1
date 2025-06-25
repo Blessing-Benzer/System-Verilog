@@ -1,0 +1,169 @@
+/*-----------------Inheritance--------------------------*/
+/*
+class parent;
+	bit [7:0] a;
+endclass
+
+class child extends parent;
+	bit[7:0] b;
+endclass 
+
+child h;
+
+module top;
+	initial 
+		begin
+	h=new;
+	h.a = 42;
+	h.b = 5;
+		$display("Values a=%d,b =%d",h.a,h.b);
+	end 
+
+endmodule 
+*/
+/*-------------------Multiple Inheritance-------------------*/
+/*
+class parent;
+	bit [7:0] a;
+endclass
+
+class child1 extends parent;
+	bit[7:0] b1;
+endclass 
+
+class child2 extends parent;
+	bit[7:0] b2;
+endclass
+
+class child3 extends child1;
+	bit[7:0] b3;
+endclass 
+
+class child4 extends child3;
+	bit[7:0] b4;
+endclass
+
+child4 h;
+
+module top;
+	initial 
+		begin
+	h=new;
+	h.a = 42;
+	h.b1 = 5;
+	//h.b2 = 25; // child4 is not child class of child2
+	h.b3 = 32;
+	h.b4 = 28;
+		$display("Values a=%d,b1 =%d,b3=%d,b4=%d",h.a,h.b1,h.b3,h.b4);
+	end 
+
+endmodule 
+*/
+
+/*--------------------------Accessing Properties to Existing Class------------*/
+/*
+class parent;
+	bit [7:0] a , b[5] , c;
+endclass
+
+class child extends parent;
+	bit[7:0] d;
+endclass 
+
+child h;
+
+module top;
+	initial 
+		begin
+	h=new;
+	h.a = 42;
+	h.c = 5;
+        h.d= 32;
+		$display("Values a=%d,b=%p c=%d,d =%d",h.a,h.b,h.c,h.d);
+	end 
+
+endmodule 
+*/
+
+/*-----------------Overriding in Inheritance---------------------*/
+/*
+class parent;
+	bit[7:0] a=50;
+	int b=8;
+endclass
+
+class child extends parent;
+	bit [7:0] a = 80;
+	int b = 7;
+endclass
+
+module top;
+	initial
+		begin
+			child c;
+			c = new();
+		$display("child class : a= %d, b=%d",c.a,c.b);
+end 
+endmodule
+*/
+
+
+/*---------------------------Super Keyword----------------*/
+/*
+class parent;
+   bit [7:0] data;
+  
+   function void display();
+      $display("parent data = %d", data);
+   endfunction
+ endclass
+
+ class child extends parent;
+   bit [7:0] data;
+  
+   function void display();
+     super.data=10;
+     super.display();
+     $display("child data = %d", data);
+   endfunction
+ endclass
+
+ module class_example;
+   initial begin
+     child c;
+     c = new();
+    
+     c.data = 5;
+     c.display();
+   end
+ endmodule
+*/
+/*--------------Super Keyword in Constructor-------------------*/
+ class parent;
+  bit [7:0] data;
+  
+   function new(bit [31:0] data);
+     this.data = data;
+     $display("parent data = %d", data);
+   endfunction
+  
+ endclass
+
+ class child extends parent;
+   bit [7:0] data;
+  
+   function new(bit [31:0] data_p, data_c);
+     super.new(data_p);
+     this.data = data_c;
+     $display("child data = %d", data);
+   endfunction
+
+ endclass
+
+ module class_example;
+   initial begin
+     child c;
+     c = new(5,7);
+    
+   end
+ endmodule
