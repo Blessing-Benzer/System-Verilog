@@ -1,0 +1,30 @@
+/*--------------------Static Method Without Creating Object--------------------*/
+/*
+class a;
+  static int i;
+endclass
+
+module top;
+ a h;
+  initial begin
+    h.i=10;
+    $display(h.i);
+end 
+endmodule
+
+*/
+/*----------------------Accesing Global Property Constant-------------------*/
+/*
+class a;
+	const int i=10;
+endclass
+
+	a h;
+module top;
+initial 
+	begin
+       h = new();	
+       //h.i
+       $display("%d",h.i);
+end 
+endmodule
