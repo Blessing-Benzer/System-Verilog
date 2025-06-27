@@ -1,6 +1,6 @@
 module pass_by_reference;
    int x,y,z;
-   function automatic int sum(ref int x,y);//const
+   function automatic int sum(ref int x,y);
      x = x+y;//x=50
      y = x+y;//y=80
      return x+y; //((x+y)+y) =130
@@ -15,3 +15,22 @@ initial begin
    
    end
 endmodule
+
+/*
+module pass_by_reference;
+   int x,y,z;
+   function int sum(ref int x,y); // Error if Dont use automatic :The task or function 'sum' with ref argument 'x' must be automatic.
+     x = x+y;//x=50
+     y = x+y;//y=80
+     return x+y; //((x+y)+y) =130
+   endfunction
+
+   initial begin
+     x = 20;
+     y = 30;
+     $display("x = %d\n y = %d\n",x,y);
+    z = sum(x,y);
+     $display("x = %d\n y = %d\n z = %d\n",x,y,z);
+   end
+ endmodule
+/*
