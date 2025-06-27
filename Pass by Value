@@ -1,17 +1,17 @@
-//if any changes to arguments within the subroutine, those changes will not be visible outside the subroutine.
 module pass_by_value;
-  int a,b,c;
-  function int sum(int x,y);
-  a = a+b;//x=50
-  b = a+b;//y=80
-  return a+b; //((a+b)+b) =130
-endfunction
+   int x,y,z;
+   function int sum(int x,y);
+     x = x+y;//x=20
+     y = x+y;//y=20  cant see updated value
+     return x+y; //((x+y)+y) =130
+   endfunction
 
    initial begin
-    a = 20;
-    b = 30;
-     $display("a = %d\nb = %d\n",a,b);
-     c = sum(a,b);
-$display("a = %d\nb = %d\nc = %d\n",a,b,c);
-      end
-endmodule
+     x = 20;
+     y = 30;
+     $display("x = %d\n y = %d\n",x,y);
+    z = sum(y,x);
+     $display("x = %d\n y = %d\n z = %d\n",x,y,z);
+   
+   end
+ endmodule
