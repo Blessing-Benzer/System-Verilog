@@ -1,0 +1,51 @@
+class b;
+
+    int b1;
+    int b2;
+
+    function b copy();
+        b copy = new;
+        copy.b1 = this.b1;
+        copy.b2 = this.b2;
+        return copy;
+    endfunction
+
+endclass
+
+class a;
+
+    int a1;
+    int a2;
+
+    b bh = new();
+
+    function a copy();
+        a copy = new;
+        copy.a1 = this.a1;
+        copy.a2 = this.a2;
+        copy.bh = this.bh.copy(); // deep copy
+        return copy;
+    endfunction
+
+endclass
+
+module top;
+
+    a ah, bh;
+
+    initial begin
+        ah = new();
+
+        ah.a1 = 5;
+        ah.a2 = 10;
+
+        ah.bh.b1 = 100;
+        ah.bh.b2 = 200;
+
+        bh = ah.copy();
+
+        $display("Original (ah): %p", ah);
+        $display("Copied   (bh): %p", bh);
+    end
+
+endmodule
