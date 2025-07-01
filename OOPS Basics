@@ -1,0 +1,109 @@
+/--------------Creating object and Accessing-----------*/
+/*
+class abc;
+	int a;
+	int b;
+	int c;
+	
+endclass
+
+module top;
+
+	abc h;
+
+initial
+begin
+
+	h=new();
+	h.a=10;
+	$display("the answer is:%p",h.b);
+	$display("the answer is:%p",h);
+end
+
+endmodule
+*/
+/////////////////////////////////////////////////////////////////////////////////////////////
+/*
+class abc;
+	int a;
+	int b;
+	int c;
+	
+endclass
+
+module top;
+
+	abc h;
+
+initial
+begin
+
+	h=new();
+
+	$display("the answer is:%p",h);
+end
+
+endmodule
+//takes default value for abc as 0
+*/
+/////////////////////////////////////////////////////////////////////////////////
+/*
+class abc;
+	int a;
+	int b;
+	int c;
+	
+endclass
+
+module top;
+
+	abc h;
+
+initial
+begin
+
+	//if object not created it throws error
+	h.a=10;
+	$display("the answer is:%p",h.b);
+	$display("the answer is:%p",h);
+end
+
+endmodule
+*/
+///////////////////////////////////////////////////////////////////////////////////////
+/*
+
+class abc;
+
+	int b;
+	int c;
+	
+endclass
+
+module top;
+
+	abc a1,a2,a3;
+
+initial
+begin
+
+	a1=new();
+	a1.b=100;
+	a2=new();
+	a2.b=300;
+	a3=a1;
+	a1=a2;
+	$display("the answer is:%p",a1);
+	$display("the answer is:%p",a2);
+	a2.b=200;
+	$display("the answer is:%p",a2);
+	$display("the answer is:%p",a1);
+	a3=a2;
+	a3.c=50;
+	$display("the answer is:%p",a1);
+	$display("the answer is:%p",a2);
+	$display("the answer is:%p",a3);
+end
+
+endmodule
+*/
