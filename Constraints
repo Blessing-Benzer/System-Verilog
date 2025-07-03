@@ -1,0 +1,134 @@
+////////////////////////////////////////////////////////////////////////////////////////////
+/*
+class fibo;
+	rand int array [];
+	constraint cons {array.size==10;}
+	constraint cons1 {foreach(array[i])
+			           if(i<2)
+						 array[i]==i;
+						 else
+						 array[i]==array[i-1]+array[i-2];}
+	function void post_randomize();
+		$display("data is %p",array);
+endfunction
+endclass
+
+fibo h;
+	
+module top;
+	initial
+		begin
+			h=new();
+				assert(h.randomize());
+end
+endmodule
+//{op:0 1 1 2 3 5 8 13 21...}
+*/
+/*
+class test;
+	rand int array [];
+	constraint cons {array.size==10;}
+	constraint cons1 {foreach(array[i])
+			           if(i%2==0)
+					   array[i]==0;
+					   else
+					   array[i]==1;}
+	function void post_randomize();
+		$display("data is %p",array);
+endfunction
+endclass
+
+test h;
+	
+module top;
+	initial
+		begin
+			h=new();
+				assert(h.randomize());
+end
+endmodule
+*/
+/* output data is '{0, 1, 0, 1, 0, 1, 0, 1, 0, 1} */
+//////////////////////////////////////////////////////////////////////////////////////
+/*
+class test;
+	rand int array [];
+	constraint cons {array.size==10;}
+	constraint cons1 {foreach(array[i])
+			           if(i<5)
+					   array[i]==i+1;
+					   else
+					   array[i]==10-i;}
+	function void post_randomize();
+		$display("data is %p",array);
+endfunction
+endclass
+
+test h;
+	
+module top;
+	initial
+		begin
+			h=new();
+				assert(h.randomize());
+end
+endmodule
+*/
+/* 1234554321*/
+////////////////////////////////////////////////////////////////////////
+/*
+class test;
+	rand int array [];
+	constraint cons {array.size==10;}
+	constraint cons1 {foreach(array[i])
+			 array[i]==(i+2)/2;}
+			
+	function void post_randomize();
+		$display("data is %p",array);
+endfunction
+endclass
+
+test h;
+	
+module top;
+	initial
+		begin
+			h=new();
+				assert(h.randomize());
+end
+endmodule
+*/
+/* 1122334455 */
+///////////////////////////////////////////////////////
+//odd number in even index and even number in odd index
+/*
+class odev;
+	rand bit[3:0] arr[];
+		constraint a {arr.size() inside {[15:20]};}
+		constraint b {foreach (arr[i]){
+						if(i%2==0)
+						arr[i]%2==1;
+						else
+						arr[i]==0;}}
+						
+				function void display();
+				foreach (arr[i])begin
+				if(i%2==0)
+				$display("even index %d odd value = %d",i,arr[i]);
+				else
+				$display("odd index %d even value = %d",i,arr[i]);
+				
+			end
+			endfunction
+	endclass
+	
+module test;
+	odev h;
+	initial
+		begin
+		h=new();
+		h.randomize();
+		h.display();
+	end 
+endmodule
+*/
