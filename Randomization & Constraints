@@ -1,0 +1,164 @@
+/*/////////////////////////////////Randomization////////////////////////////////*/
+/*------------------------Basic Constraint Generation---------------------------*/
+/*
+class test;
+
+	rand bit[15:0] a;
+	constraint ran{a<=16'd64;}
+
+endclass
+
+	test h = new;
+module top;
+initial 
+	begin
+
+		int success;
+			
+			for(int i = 0; i<16; i++)
+		
+		begin
+			success = h.randomize();
+		$display("a = %d",h.a);
+end
+end 
+endmodule
+/*
+/*----------------------Keyword Inside-----------------*/
+/*
+class member;
+	rand bit [7:0] a;
+	rand bit [7:0] b;
+        rand bit [7:0] c;
+	constraint ca {a inside {3,7,[10:14]};}
+	constraint cb {b inside {[10:20]};}
+	constraint cc {!(c inside {[100:200]});}
+endclass
+
+module top;
+	member mem_h = new();
+
+	initial
+		begin
+			int success;
+			repeat(5) begin
+			success = mem_h.randomize();
+			$display("data a = %d,data b = %d,data c = %d",mem_h.a,mem_h.b,mem_h.c);
+			
+end
+end 
+endmodule
+*/
+/*----------------------Keyword Inside From an array-----------------*/ 
+/*
+class member;
+	rand bit [7:0] a;
+	bit[7:0] a_previous[] = {1,2,3,5,8,10,11};
+	constraint ca {a inside {a_previous};}
+	
+endclass
+
+module top;
+	member mem_h = new();
+
+	initial
+		begin
+			int success;
+			repeat(7) begin
+			success = mem_h.randomize();
+			$display("data a = %d",mem_h.a);
+			
+end
+end 
+endmodule
+*/
+/*--------------------Keyword Dist--------------------------*/
+/*
+class value;
+   rand bit [7:0] a1;
+   rand bit [7:0] a2;
+   //int a;
+  
+   constraint val1 {a1 dist {3:/4, [5:8] :/ 7}; }
+   constraint val2 {a2 dist {3:=4, [5:8] := 7}; }
+   //constraint val3 {a dist {3:=4, [5:8] := 7}; }
+
+ endclass
+
+module constraint_example;
+   value ha;
+  
+   initial begiin
+   ha = new();
+    
+     repeat(10) begin
+       ha.randomize();
+       $display("value1 = %d, value2 = %0d", ha.a1, ha.a2);
+     end
+   end
+endmodule
+*/
+
+/*-------------------Rand Mode and Constraint Mode---------------*/
+/*
+class a;
+  rand bit [7:0] b;
+  rand bit [7:0] c;
+
+  constraint br {b inside {[10:30]};}
+  constraint cr {c inside {40,70,80};}
+
+endclass
+
+module test;
+  a h;
+  
+  initial begin
+    h = new();
+    
+    h.randomize();
+    $display(" random values: b = %d, c = %d", h.b, h.c);
+    
+    h.rand_mode(0);  
+    h.randomize();
+    $display("rand_mode0: b = %d, c = %d", h.b, h.c);
+    
+    h.rand_mode(1);  
+    h.randomize();
+    $display("rand_mode1: b = %d, c = %d", h.b, h.c);
+    
+    h.c.rand_mode(0);  
+    h.randomize();
+    $display("disble c: b = %d, c = %d", h.b, h.c);
+    
+    $display("rand_mode function returns for b = %d, c = %d", h.b.rand_mode(), h.c.rand_mode());
+  end
+endmodule
+
+*/
+/////Conditional Constraints////////////
+/*
+class member;
+	rand bit[15:0] a;
+	 bit [14:0] b;
+      
+	constraint ca {b==1'b1 -> a<96;
+			b==1'b0 -> a<1248;}
+endclass
+
+module top;
+	member mem_h = new;
+
+	initial
+		begin
+			int success;
+			mem_h.b=1'b1;
+			repeat(5) begin
+			success = mem_h.randomize();
+			$display("data a %d ,data b %d",mem_h.a,mem_h.b);
+			
+end
+end
+endmodule
+
+*/
